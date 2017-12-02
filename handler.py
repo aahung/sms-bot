@@ -29,7 +29,7 @@ def parser(sms):
 
     if service == 'weather':
         if len(args) == 2:
-            if args[1] in ['now', 'today', 'tomorrow', 'tml']:
+            if args[1] in ['now', 'today', 'tomorrow', 'tmr']:
                 params = args[1:]
         elif len(args) == 3:
             if args[1] == 'vancouver':
@@ -37,7 +37,7 @@ def parser(sms):
             else:
                 # FIXME: HACK: if location unsupported, always use vancouver
                 params.append('vancouver')
-            if args[2] in ['now', 'today', 'tomorrow', 'tml']:
+            if args[2] in ['now', 'today', 'tomorrow', 'tmr']:
                 params.append(args[2])
             else:
                 # Agreed that time is now if not specified
