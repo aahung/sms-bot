@@ -4,9 +4,9 @@ from handler import *
 
 class TestCase(unittest.TestCase):
     def test_weather(self):
-        self.assertTrue(parse('weather')[0] == 'weather')
-        self.assertTrue(parse('weather   ')[0] == 'weather')
-        self.assertTrue(parse('  weather   ')[0] == 'weather')
+        self.assertTrue(parse('weather')[0] == services['weather'])
+        self.assertTrue(parse('weather   ')[0] == services['weather'])
+        self.assertTrue(parse('  weather   ')[0] == services['weather'])
 
         self.assertTrue('C' in weather.handler(['today']))
         self.assertTrue('C' in weather.handler(['now']))
@@ -28,7 +28,7 @@ class TestCase(unittest.TestCase):
             self.assertTrue(usage == str(e))
 
     def test_exchange(self):
-        self.assertTrue(parse('exchange')[0] == 'exchange')
+        self.assertTrue(parse('exchange')[0] == services['exchange'])
         self.assertTrue(len(exchange.parse(['exchange', 'CAD']).keys()) == 3)
         self.assertTrue(len(exchange.parse(['exchange', '1.5', 'USD']).keys()) == 3)
         self.assertTrue(exchange.parse(['exchange', '1.5', 'USD'])['target'] == 'USD')

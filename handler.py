@@ -6,14 +6,21 @@ sys.path = ['lib'] + sys.path
 import re
 import requests
 import json
+
 from urllib.parse import parse_qs
 
 from services import weather
 from services import exchange
 from services import stock
 
+services = {
+    'weather': weather,
+    'exchange': exchange,
+    'stock': stock
+}
+
 usage = '''Possible commands:
-%s''' % ('\n'.join([weather.usage, exchange.usage, stock.usage]),)
+%s''' % ('\n'.join([services[s].usage for s in services]),)
 
 def parse(sms):
     """
@@ -24,7 +31,7 @@ def parse(sms):
             weather vancouver tomorrow
     """
 
-    service = ''
+    service = None
     params = []
 
     args = re.split('\s', sms.lower().strip())
@@ -32,14 +39,11 @@ def parse(sms):
     if len(args) == 0:
         exit('gg')
 
-    service = args[0]
+    serviceName = args[0]
 
-    if service == 'weather':
-        params = weather.parse(args)
-    elif service == 'exchange':
-        params = exchange.parse(args)
-    elif service == 'stock':
-        params = stock.parse(args)
+    if serviceName in services:
+        service = services[serviceName]
+        params = service.parse(args)
     else:
         raise Exception(usage)
             
@@ -60,14 +64,7 @@ def lambda_handler(event, context):
     
     try:
         service, params = parse(message)
-        if service == 'weather':
-            response = weather.handler(params)
-            send_sms(from_number, response)
-        if service == 'exchange':
-            response = exchange.handler(params)
-            send_sms(from_number, response)
-        if service == 'stock':
-            response = stock.handler(params)
-            send_sms(from_number, response)
+        response = service.handler(params)
+        send_sms(from_number, response)
     except Exception as e:
         send_sms(from_number, str(e))
