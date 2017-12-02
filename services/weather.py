@@ -5,13 +5,33 @@ from lib import requests
 import datetime
 import calendar
 
+usage = 'weather [now|today|tomorrow]'
+
+def parse(args):
+    params = []
+    if len(args) == 2:
+        if args[1] in ['now', 'today', 'tomorrow', 'tmr']:
+            params = args[1:]
+    elif len(args) == 3:
+        if args[1] == 'vancouver':
+            params.append(args[1])
+        else:
+            # FIXME: HACK: if location unsupported, always use vancouver
+            params.append('vancouver')
+        if args[2] in ['now', 'today', 'tomorrow', 'tmr']:
+            params.append(args[2])
+        else:
+            # Agreed that time is now if not specified
+            params.append('now')
+    return params
+
 def handler(params):
     sms = []
     if len(params) == 0:
         # assuming get weather for 'now'
         # and return instructions
         params = ['now']
-        sms.append('Usage: weather [now|today|tomorrow].')
+        sms.append('Usage: %s.' % usage)
 
     van_tz = pytz.timezone('America/Vancouver')
 
