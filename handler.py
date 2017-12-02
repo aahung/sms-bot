@@ -30,8 +30,14 @@ def parser(sms):
         elif len(args) == 3:
             if args[1] == 'vancouver':
                 params.append(args[1])
+            else:
+                # FIXME: HACK: if location unsupported, always use vancouver
+                params.append('vancouver')
             if args[2] in ['now', 'today', 'tomorrow', 'tml']:
                 params.append(args[2])
+            else:
+                # Agreed that time is now if not specified
+                params.append('now')
             
     return service, params
 
