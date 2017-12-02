@@ -4,10 +4,13 @@ import sys
 sys.path = ['lib'] + sys.path
 
 import re
-from services import weather, stock
 import requests
 import json
 from urllib.parse import parse_qs
+
+from services import weather
+from services import exchange
+from services import stock
 
 usage = '''Possible commands:
 %s''' % ('\n'.join([weather.usage]),)
@@ -33,6 +36,8 @@ def parse(sms):
 
     if service == 'weather':
         params = weather.parse(args)
+    elif service == 'exchange':
+        params = exchange.parse(args)
     else:
         raise Exception(usage)
             
@@ -55,6 +60,9 @@ def lambda_handler(event, context):
         service, params = parse(message)
         if service == 'weather':
             response = weather.handler(params)
+            send_sms(from_number, response)
+        if service == 'exchange':
+            response = exchange.handler(params)
             send_sms(from_number, response)
     except Exception as e:
         send_sms(from_number, str(e))
