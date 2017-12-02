@@ -21,7 +21,7 @@ def parser(sms):
     service = ''
     params = []
 
-    args = re.split('\s', sms.lower())
+    args = re.split('\s', sms.lower().strip())
 
     if len(args) == 0:
         exit('gg')
