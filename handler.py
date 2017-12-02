@@ -4,7 +4,7 @@ import sys
 sys.path = ['lib'] + sys.path
 
 import re
-from services import weather
+from services import weather, stock
 import requests
 import json
 from urllib.parse import parse_qs
