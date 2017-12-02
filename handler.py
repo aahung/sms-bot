@@ -15,8 +15,12 @@ def parser(sms):
     params = []
 
     args = re.split('\s', sms.lower())
+
+    if len(args) == 0:
+        exit('gg')
+
+    service = args[0]
     if len(args) == 1:
-        service = args[0]
         return service, params
 
     if service == 'weather':
@@ -30,4 +34,3 @@ def main(sms):
     service, params = parser(sms)
     if service == 'weather':
         weather.handler(params)
-        
