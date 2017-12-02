@@ -25,9 +25,14 @@ def parser(sms):
 
     if service == 'weather':
         if len(args) == 2:
-            if args[1] == 'now' or args[1] == 'today' or args[1] == 'tomorrow' or args[1] == 'tml':
+            if args[1] in ['now', 'today', 'tomorrow', 'tml']:
                 params = args[1:]
-
+        elif len(args) == 3:
+            if args[1] == 'vancouver':
+                params.append(args[1])
+            if args[2] in ['now', 'today', 'tomorrow', 'tml']:
+                params.append(args[2])
+            
     return service, params
 
 def main(sms):
