@@ -13,7 +13,7 @@ from services import exchange
 from services import stock
 
 usage = '''Possible commands:
-%s''' % ('\n'.join([weather.usage]),)
+%s''' % ('\n'.join([weather.usage, exchange.usage, stock.usage]),)
 
 def parse(sms):
     """
@@ -38,6 +38,8 @@ def parse(sms):
         params = weather.parse(args)
     elif service == 'exchange':
         params = exchange.parse(args)
+    elif service == 'stock':
+        params = stock.parse(args)
     else:
         raise Exception(usage)
             
@@ -63,6 +65,9 @@ def lambda_handler(event, context):
             send_sms(from_number, response)
         if service == 'exchange':
             response = exchange.handler(params)
+            send_sms(from_number, response)
+        if service == 'stock':
+            response = stock.handler(params)
             send_sms(from_number, response)
     except Exception as e:
         send_sms(from_number, str(e))
