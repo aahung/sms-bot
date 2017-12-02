@@ -14,6 +14,12 @@ class TestCase(unittest.TestCase):
         self.assertTrue('C' in weather.handler(['tomorrow']))
         self.assertTrue('Usage' in weather.handler([]))
 
+    def test_stock(self):
+        self.assertTrue('Apple Inc.' in stock.handler(['aapl']))
+        self.assertTrue('Facebook Inc.' in stock.handler(['fb']))
+        self.assertTrue('Microsoft' in stock.handler(['msft']))
+        self.assertTrue('Usage' in stock.handler([]))
+
     def test_parse(self):
         try:
             parse('asdhaksljd')
