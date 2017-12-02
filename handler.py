@@ -1,4 +1,8 @@
 # import services here
+
+import sys
+sys.path = ['lib'] + sys.path
+
 import re
 from services import weather
 
@@ -45,3 +49,10 @@ def main(sms):
     service, params = parser(sms)
     if service == 'weather':
         weather.handler(params)
+
+def test_weather():
+	print(weather.handler(['today']))
+	print(weather.handler(['now']))
+	print(weather.handler(['tmr']))
+	print(weather.handler(['tomorrow']))
+	print(weather.handler([]))
