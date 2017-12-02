@@ -8,7 +8,7 @@ Project for [UBC Hacks' Local Hack Day 2017](https://hackday.mlh.io/ubchacks?em=
 
 ### Weather (Vancouver)
 
-We provide rain volume and temperature (feel) information.
+We provide rain volume and temperature (feel) information. (provider: [The Weather Network](https://www.theweathernetwork.com))
 
 ```
 weather now
@@ -17,12 +17,16 @@ weather tomorrow
 ```
 
 ### Stock Price
+(provider: [IEX](https://iextrading.com))
+
 ```
 stock appl
 stock fb
 ```
 
 ### Exchange Rate
+(provider: [Fixer](http://fixer.io))
+
 ```
 exchange 3 CAD to usd
 exchange RUB to usd
