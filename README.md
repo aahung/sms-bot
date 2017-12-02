@@ -30,7 +30,7 @@ exchange HKD
 exchange 0.8 gbp
 ```
 
-## Tech details
+## Tech Details
 
 - [Twilio](https://www.twilio.com/) for sending/receiving SMS
 - [AWS Lambda](https://aws.amazon.com/lambda/) for backends. 
