@@ -5,6 +5,9 @@ sys.path = ['lib'] + sys.path
 
 import re
 from services import weather
+import requests
+import json
+from urllib.parse import parse_qs
 
 def parser(sms):
     """
@@ -45,14 +48,27 @@ def parser(sms):
             
     return service, params
 
-def main(sms):
-    service, params = parser(sms)
-    if service == 'weather':
-        weather.handler(params)
-
 def test_weather():
-	print(weather.handler(['today']))
-	print(weather.handler(['now']))
-	print(weather.handler(['tmr']))
-	print(weather.handler(['tomorrow']))
-	print(weather.handler([]))
+    print(weather.handler(['today']))
+    print(weather.handler(['now']))
+    print(weather.handler(['tmr']))
+    print(weather.handler(['tomorrow']))
+    print(weather.handler([]))
+
+def send_sms(to, body):
+    with open('twilio-credential.json', 'r') as f:
+        config = json.loads(f.read())
+    r = requests.post(config['endpoint'], dict(
+        From=config['number'],
+        To=to,
+        Body=body), auth=(config['key'], config['token']))
+
+def lambda_handler(event, context):
+    params = parse_qs(event['body'])
+    from_number = params['From'][0]
+    message = params['Body'][0]
+
+    service, params = parser(message)
+    if service == 'weather':
+        response = weather.handler(params)
+        send_sms(from_number, response)
