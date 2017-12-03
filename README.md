@@ -1,4 +1,4 @@
-# SMS Bot
+# SMS Bot [![Build Status](https://travis-ci.org/Aahung/sms-bot.svg?branch=master)](https://travis-ci.org/Aahung/sms-bot)
 
 <p align="center">
     <img title="screen shot" src="screenshot.png" />
