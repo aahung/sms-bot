@@ -40,8 +40,12 @@ def handler(params):
             alpha = cols[3].text.strip()
             notes = cols[4].text.strip()
             if (params[0] + params[1]).lower() == course_code.lower():
-                sms.append('{} \ {} \ {} \ {} \ {}'.format(cols[0].text.strip(), 
-                    exam_time, location, alpha if alpha else '(none)', notes if notes else '(none)'))
+                items = [cols[0].text.strip(),
+                         exam_time, location,
+                         alpha if alpha else '',
+                         notes if notes else '']
+                items = [i for i in items if len(i) > 0]
+                sms.append(' \\ '.join(items))
     except Exception as e:
         return ' '.join(
             ['Usage: {}.'.format(usage), 'Error: Something went wrong in your request.'])
