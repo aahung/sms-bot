@@ -20,6 +20,13 @@ class TestCase(unittest.TestCase):
         self.assertTrue('Microsoft' in stock.handler(['msft']))
         self.assertTrue('Usage' in stock.handler([]))
 
+    def test_ubc_exam(self):
+        self.assertTrue(parse('ubc exam')[0] == services['ubc']['exam'])
+        self.assertTrue('CPSC304' in ubc_exam.handler(['CPsC', '304']))
+        self.assertTrue('CPSC310' in ubc_exam.handler(['cPsC', '310']))
+        self.assertTrue('Usage' in ubc_exam.handler(['asdg']))
+        self.assertTrue('Usage' in ubc_exam.handler([]))
+
     def test_parse(self):
         try:
             parse('asdhaksljd')

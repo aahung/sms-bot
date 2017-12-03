@@ -13,13 +13,15 @@ from services import weather
 from services import exchange
 from services import stock
 from services import ubc_prof
+from services import ubc_exam
 
 services = {
     'weather': weather,
     'exchange': exchange,
     'stock': stock,
     'ubc': {
-        'prof': ubc_prof
+        'prof': ubc_prof,
+        'exam': ubc_exam
     }
 }
 
