@@ -1,5 +1,6 @@
 # import services here
 
+import os
 import sys
 sys.path = ['lib'] + sys.path
 
@@ -36,6 +37,11 @@ for service in services:
 usage.append('Github: https://github.com/Aahung/sms-bot')
 usage = '\n'.join(usage)
 
+TWILIO_SMS_URL = "https://api.twilio.com/2010-04-01/Accounts/{}/Messages.json"
+TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
+TWILIO_NUMBER = os.environ.get("TWILIO_NUMBER")
+
 def parse(sms):
     """
     Weather Service Inputs:
@@ -68,12 +74,13 @@ def parse(sms):
     return service, params
 
 def send_sms(to, body):
-    with open('twilio-credential.json', 'r') as f:
-        config = json.loads(f.read())
-    r = requests.post(config['endpoint'], dict(
-        From=config['number'],
+    
+    populated_url = TWILIO_SMS_URL.format(TWILIO_ACCOUNT_SID)
+
+    r = requests.post(populated_url, dict(
+        From=TWILIO_NUMBER,
         To=to,
-        Body=body), auth=(config['key'], config['token']))
+        Body=body), auth=(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN))
     return {
         'statusCode': '200',
         'body': {
