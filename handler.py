@@ -25,8 +25,14 @@ services = {
     }
 }
 
-usage = '''Possible commands:
-%s''' % ('\n'.join([services[s].usage for s in ['weather', 'exchange', 'stock']]),)
+usage = ['Possible commands:']
+for service in services:
+    if 'handler' not in dir(services[service]):
+        for sub_service in services[service]:
+            usage.append('%s %s' % (service, sub_service))
+    else:
+        usage.append(service)
+usage = '\n'.join(usage)
 
 def parse(sms):
     """
