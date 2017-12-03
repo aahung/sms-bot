@@ -33,6 +33,7 @@ for service in services:
             usage.append('%s %s' % (service, sub_service))
     else:
         usage.append(service)
+usage.append('Github: https://github.com/Aahung/sms-bot')
 usage = '\n'.join(usage)
 
 def parse(sms):
