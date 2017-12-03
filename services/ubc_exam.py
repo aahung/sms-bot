@@ -5,7 +5,7 @@ usage = 'ubc exam <dept> <course#>'
 
 def parse(args):
     params = []
-    if len(args) == 2:
+    if len(args) == 4:
         params = args[2:]
     
     return params
