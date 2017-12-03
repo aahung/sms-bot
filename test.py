@@ -49,6 +49,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(parse('ubc prof')[0] == services['ubc']['prof'])
         self.assertTrue('Reid Hol' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid', 'ho'])))
         self.assertTrue('phone' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid', 'ho'])))
+        self.assertTrue('phone' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'carol', 'jaeger'])))
         self.assertTrue('narrow' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid'])))
 
     def test_joke(self):

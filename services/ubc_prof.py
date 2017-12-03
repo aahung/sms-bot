@@ -59,7 +59,7 @@ def handler(params):
         sms.append('Found multiple professors: [%s ..]. Please narrow down the keywords' % ' | '.join(names))
     else:
         tr = trs[0]
-        name = ' '.join([eval(f.replace(';', '')) for f in tr.find('td').text.strip().split()])
+        name = ' '.join([eval(f.strip().replace(';', '')) for f in tr.find('td').text.strip().split('\n')])
         phone = '-'.join(tr.find_all('td')[-1].text.strip().split('\xa0')[0].split())
         sms.append('%s\'s phone number is %s.' % (name, phone))
 
