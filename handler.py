@@ -12,11 +12,13 @@ from urllib.parse import parse_qs
 from services import weather
 from services import exchange
 from services import stock
+from services import ubcexam
 
 services = {
     'weather': weather,
     'exchange': exchange,
-    'stock': stock
+    'stock': stock,
+    'ubcexam': ubcexam
 }
 
 usage = '''Possible commands:
