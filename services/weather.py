@@ -1,7 +1,7 @@
 # params [location, time]
 # time: now, today, tomorrow
-from lib import pytz
-from lib import requests
+import pytz
+import requests
 import datetime
 import calendar
 

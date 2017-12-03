@@ -1,5 +1,3 @@
-# params [location, time]
-# time: now, today, tomorrow
 import requests
 from bs4 import BeautifulSoup
 

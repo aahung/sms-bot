@@ -1,4 +1,4 @@
-from lib import requests
+import requests
 
 usage = 'exchange [amount=1] <target-currency> | exchange [amount=1] [base-currency=CAD] to <target-currency>'
 

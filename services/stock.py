@@ -1,9 +1,4 @@
-# params [location, time]
-# time: now, today, tomorrow
-from lib import pytz
-from lib import requests
-import datetime
-import calendar
+import requests
 
 usage = 'stock [ticker]'
 
