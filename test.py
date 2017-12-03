@@ -51,6 +51,11 @@ class TestCase(unittest.TestCase):
         self.assertTrue('phone' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid', 'ho'])))
         self.assertTrue('narrow' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid'])))
 
+    def test_joke(self):
+        self.assertTrue(parse('tell me a joke')[0] == joke)
+        self.assertTrue(parse('jokes?')[0] == joke)
+        self.assertTrue(parse('any jokes?')[0] == joke)
+
 
 if __name__ == '__main__':
     unittest.main()

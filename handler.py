@@ -14,6 +14,7 @@ from services import exchange
 from services import stock
 from services import ubc_prof
 from services import ubc_exam
+from services import joke
 
 services = {
     'weather': weather,
@@ -59,6 +60,8 @@ def parse(sms):
             service = service[args[1]]
         params = service.parse(args)
     except Exception as e:
+        if 'joke' in ''.join(args):
+            return joke, []
         raise Exception(usage)
             
     return service, params
