@@ -73,15 +73,26 @@ def send_sms(to, body):
         From=config['number'],
         To=to,
         Body=body), auth=(config['key'], config['token']))
+    return {
+        'statusCode': '200',
+        'body': {
+            'to': to,
+            'message': body
+        },
+        'headers': {
+            'Content-Type': 'application/json',
+        }
+    }
 
 def lambda_handler(event, context):
     params = parse_qs(event['body'])
     from_number = params['From'][0]
     message = params['Body'][0]
     
+
     try:
         service, params = parse(message)
         response = service.handler(params)
-        send_sms(from_number, response)
+        return send_sms(from_number, response)
     except Exception as e:
-        send_sms(from_number, str(e))
+        return send_sms(from_number, str(e))
