@@ -1,6 +1,8 @@
 # SMS Bot
 
-![screenshot](screenshot.png)
+<p align="center">
+    <img title="screen shot" src="screenshot.png" />
+</p>
 
 Project for [UBC Hacks' Local Hack Day 2017](https://hackday.mlh.io/ubchacks?em=537). To fulfill the theme "accessibility," we aim to provide information services for people unable to access the internet (e.g., elders).
 
