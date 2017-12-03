@@ -1,4 +1,4 @@
-# SMS Bot [![Build Status](https://travis-ci.org/Aahung/sms-bot.svg?branch=master)](https://travis-ci.org/Aahung/sms-bot)
+# SMS Bot [![Build Status](https://travis-ci.org/Aahung/sms-bot.svg?branch=master)](https://travis-ci.org/Aahung/sms-bot) [![Coverage Status](https://coveralls.io/repos/github/Aahung/sms-bot/badge.svg?branch=master)](https://coveralls.io/github/Aahung/sms-bot?branch=master)
 
 <p align="center">
     <img title="screen shot" src="screenshot.png" />
