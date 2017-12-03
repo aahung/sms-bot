@@ -12,15 +12,19 @@ from urllib.parse import parse_qs
 from services import weather
 from services import exchange
 from services import stock
+from services import ubc_prof
 
 services = {
     'weather': weather,
     'exchange': exchange,
-    'stock': stock
+    'stock': stock,
+    'ubc': {
+        'prof': ubc_prof
+    }
 }
 
 usage = '''Possible commands:
-%s''' % ('\n'.join([services[s].usage for s in services]),)
+%s''' % ('\n'.join([services[s].usage for s in ['weather', 'exchange', 'stock']]),)
 
 def parse(sms):
     """
@@ -41,10 +45,12 @@ def parse(sms):
 
     serviceName = args[0]
 
-    if serviceName in services:
+    try:
         service = services[serviceName]
+        if 'handler' not in dir(service):
+            service = service[args[1]]
         params = service.parse(args)
-    else:
+    except Exception as e:
         raise Exception(usage)
             
     return service, params

@@ -37,5 +37,12 @@ class TestCase(unittest.TestCase):
         self.assertTrue('Usage' in exchange.handler({'error': ''}))
         self.assertTrue(' = ' in exchange.handler(exchange.parse(['exchange', 'USD'])))
 
+    def test_ubc_prof(self):
+        self.assertTrue(parse('ubc prof')[0] == services['ubc']['prof'])
+        self.assertTrue('Reid Hol' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid', 'ho'])))
+        self.assertTrue('phone' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid', 'ho'])))
+        self.assertTrue('narrow' in ubc_prof.handler(ubc_prof.parse(['ubc', 'prof', 'reid'])))
+
+
 if __name__ == '__main__':
     unittest.main()

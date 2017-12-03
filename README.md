@@ -34,6 +34,14 @@ exchange HKD
 exchange 0.8 gbp
 ```
 
+### UBC Professor Phone
+(provider: [UBC](http://ubc.ca))
+
+```
+ubc prof well smith
+ubc prof john doe
+```
+
 ## Tech Details
 
 - [Twilio](https://www.twilio.com/) for sending/receiving SMS
