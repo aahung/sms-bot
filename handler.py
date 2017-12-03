@@ -12,13 +12,13 @@ from urllib.parse import parse_qs
 from services import weather
 from services import exchange
 from services import stock
-from services import ubcexam
+from services import ubc_exam
 
 services = {
     'weather': weather,
     'exchange': exchange,
     'stock': stock,
-    'ubcexam': ubcexam
+    'ubc_exam': ubc_exam
 }
 
 usage = '''Possible commands:
@@ -42,6 +42,9 @@ def parse(sms):
         exit('gg')
 
     serviceName = args[0]
+
+    if serviceName == 'ubc':
+        serviceName = serviceName + '_' + args[1]
 
     if serviceName in services:
         service = services[serviceName]
