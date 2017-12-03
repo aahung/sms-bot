@@ -6,5 +6,5 @@ def parse(args):
     return []
 
 def handler(params):
-    r = requests.get('http://api.icndb.com/jokes/random')
-    return r.json()['value']['joke']
+    r = requests.get('https://icanhazdadjoke.com/', headers={"Accept": "application/json"})
+    return r.json()['joke']
