@@ -34,6 +34,14 @@ exchange HKD
 exchange 0.8 gbp
 ```
 
+### UBC Exam (CPSC only)
+(provider: [UBC](http://ubc.ca))
+
+```
+ubc exam cpsc 110
+ubc exam CPSC 310
+```
+
 ### UBC Professor Phone
 (provider: [UBC](http://ubc.ca))
 
